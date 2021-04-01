@@ -58,18 +58,33 @@
 //         alert (userAge + ' лет');
 //     }
 
-var heightOfTree = +prompt('Enter height of tree');
-var tree = '';
+// var heightOfTree = +prompt('Enter height of tree');
+// var tree = '';
 
-for (var i = 1; i <= heightOfTree; i++) {
-    for (var j = 1; j <= heightOfTree + heightOfTree - 1; j++) {
-        if (j <= heightOfTree - i || j >= heightOfTree + i) {
-            tree += ' ';
-        } else {
-            tree += '*';
+// for (var i = 1; i <= heightOfTree; i++) {
+//     for (var j = 1; j <= heightOfTree + heightOfTree - 1; j++) {
+//         if (j <= heightOfTree - i || j >= heightOfTree + i) {
+//             tree += ' ';
+//         } else {
+//             tree += '*';
+//         }
+//     }
+//     tree += '\n';
+// }
+
+// console.log(tree);
+
+function padString(target, char, length, fromStart) {
+    if (target.length < length) {
+        var concat = '';
+        for (var i = 1; i <= length - target.length; i++) {
+            concat = concat + char;
         }
-    }
-    tree += '\n';
+        if (fromStart) {
+            target = concat + target;
+        } else {
+            target = target + concat;
+        }
+    } 
+    return target;
 }
-
-console.log(tree);
