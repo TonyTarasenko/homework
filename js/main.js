@@ -74,17 +74,46 @@
 
 // console.log(tree);
 
-function padString(target, char, length, fromStart) {
-    if (target.length < length) {
-        var concat = '';
-        for (var i = 1; i <= length - target.length; i++) {
-            concat = concat + char;
-        }
-        if (fromStart) {
-            target = concat + target;
-        } else {
-            target = target + concat;
-        }
-    } 
-    return target;
+// function padString(target, char, length, fromStart) {
+//     if (target.length < length) {
+//         var concat = '';
+//         for (var i = 1; i <= length - target.length; i++) {
+//             concat = concat + char;
+//         }
+//         if (fromStart) {
+//             target = concat + target;
+//         } else {
+//             target = target + concat;
+//         }
+//     } 
+//     return target;
+// }
+
+function cloneObj (obj) {
+    var copyObj = {};
+    for (var property in obj) {
+        copyObj[property] = obj[property]
+    }
+    return copyObj;
+}
+function getValues (obj, separator) {
+    var string = '';
+    for (var key in obj) {
+        string += obj[key] + separator + ' ';
+    }
+    return string
+}
+function getKeys (obj, separator) {
+    var string = '';
+    for (var key in obj) {
+        string += key + separator + ' ';
+    }
+    return string
+}
+function getEntries (obj) {
+    var string = '';
+        for (var key in obj) {
+        string += key + ': ' + obj[key] + '\n';
+    }
+    return string
 }
