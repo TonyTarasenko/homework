@@ -100,7 +100,7 @@ function getValues (obj, separator) {
     var string = '';
     for (var key in obj) {
         string += obj[key] + separator + ' ';
-    }
+    } 
     return string
 }
 function getKeys (obj, separator) {
@@ -116,4 +116,54 @@ function getEntries (obj) {
         string += key + ': ' + obj[key] + '\n';
     }
     return string
+}
+
+function getResultAll (operation) {
+    for (var j = 1; j < arguments.length; j++) {
+        if (typeof arguments[j] === 'number') {
+            var res = arguments[j];
+            break;
+        }
+    }
+    for (var i = j + 1; i < arguments.length; i++) {
+        if (typeof arguments[i] === 'number') {
+            switch (operation) {
+                case '+':
+                    res += arguments[i];
+                    break;
+                case '-':
+                    res -= arguments[i];
+                    break;
+                case '*':
+                    res *= arguments[i];
+                    break;
+                case '/':
+                    res /= arguments[i];    
+                    break;
+            }
+        }
+    }
+     return res;
+}
+
+function reverseString (string) {
+    var reverse = '';
+    for (var i = string.length - 1; i >= 0; i--) {
+        reverse += string[i];
+    }
+    return reverse;
+}
+
+function isCharPresent (string, char) {
+        for (key in string) {
+            if (string[key].toLowerCase() === char.toLowerCase()) return true;
+        }
+        return false
+    }
+    
+function charIndexOf (string, char) {
+    for (key in string) {
+        if (string[key].toLowerCase() === char.toLowerCase()) return key;
+    }
+    return -1;
 }
