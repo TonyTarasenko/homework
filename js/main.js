@@ -198,3 +198,63 @@ function myMap (arr, callback) {
     }
     return result;
 }
+
+const toDoList = [];
+const toDoListMethods = {
+        createNewTask: function (taskName, taskText, taskStatus) {
+                const checker = toDoListMethods.isTaskNamePresent(toDoList, taskName);
+                if (checker) {
+                        toDoList.push(toDoListMethods.taskConstructor(taskName, taskText, taskStatus));
+                } else console.log (`Task ${taskName} already exists`);
+        },
+
+        deleteTask: function (taskName) {
+                for (let value of toDoList) {
+                        if (value.taskName === taskName) toDoList.splice(toDoList.indexOf(value), 1);
+                }
+        },
+
+        editTask: function (taskName, taskText, taskStatus) {
+                for (let value of toDoList) {
+                        if (value.taskName === taskName) {
+                                taskText = taskText === '' ? value.taskText : taskText;
+                                taskStatus = taskStatus === undefined ? value.taskStatus : taskStatus;
+                                value.taskText = taskText;
+                                value.taskStatus = taskStatus;
+                        }
+                }   
+        },
+
+        showTasks: function () {
+                let doneTasks = 0;
+                let pendingTasks = 0;
+                for (let value of toDoList) {
+                        if (value.taskStatus === true) {
+                                pendingTasks++;
+                        } else doneTasks++;
+                }
+                const quantityOfTasks = {
+                        allTasks: toDoList.length,
+                        doneTasks,
+                        pendingTasks,
+                }
+                return quantityOfTasks;
+        },
+
+        taskConstructor: function (taskName, taskText, taskStatus) {
+                const temp = {
+                taskName,
+                taskText,
+                taskStatus,
+            }
+                return temp;
+        },
+        
+         isTaskNamePresent: function (arr, taskName) {
+                if (arr.length === 0) return true;
+                for (let value of arr) {
+                        if (value.taskName === taskName) return false;
+                }
+                return true;
+        },
+}
